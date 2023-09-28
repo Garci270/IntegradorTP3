@@ -18,8 +18,8 @@ public class StudentHistory implements Serializable {
 	@JoinColumn(name="idStudent")
 	private Student student;
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idCareer")
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name="idCareer")
 	private Carrer carrer;
 	@Column(nullable = false)
 	private Date inscriptionDate;
@@ -33,7 +33,7 @@ public class StudentHistory implements Serializable {
 	public StudentHistory(Student student, Carrer career, Date inscriptionDate, Date egressDate, boolean graduate) {
 		super();
 		this.student = student;
-		this.carrer = carrer;
+		this.carrer = career;
 		this.inscriptionDate = inscriptionDate;
 		this.egressDate = egressDate;
 	}

@@ -11,7 +11,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-public class CarrerRepositoryImpl implements CarrerRepository{
+public class CarrerRepositoryImpl{
 	private static CarrerRepositoryImpl instance;
 	private EntityManager em;
 	
@@ -27,7 +27,7 @@ public class CarrerRepositoryImpl implements CarrerRepository{
 		return instance;
 	}
 
-	@Override
+
 	public void insertCarrer(Carrer career) {
 		try {
 			em.getTransaction().begin();
@@ -43,7 +43,7 @@ public class CarrerRepositoryImpl implements CarrerRepository{
 		
 	}
 
-	@Override
+
 	public List<DTOCarrerByStudents> getCarrersByNumberOfStudents() {
 		try {
 			em.getTransaction().begin();
@@ -65,7 +65,7 @@ public class CarrerRepositoryImpl implements CarrerRepository{
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
+
 	public List<DTOCarrerByYear> getReportOfCarrers() {
 		try {
 			em.getTransaction().begin();
