@@ -24,7 +24,7 @@ public class CareerService {
 		try {
 			return repository.save(career);
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception(e.getMessage());
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class CareerService {
 				.map(row -> new DTOCareerByStudents(row.getName(), row.getAmountStudents()))
 					.collect(Collectors.toList());
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception(e.getMessage());
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class CareerService {
 					.map(row -> new DTOCareerByYear(row.getIdCareer(), row.getName(), row.getAmountEnrolled(), row.getAmountGraduated(), row.getYear()))
 						.collect(Collectors.toList());
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception(e.getMessage());
 		}
 	}
 	

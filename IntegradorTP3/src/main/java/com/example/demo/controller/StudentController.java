@@ -1,56 +1,75 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.DTO.DTOStudent;
 import com.example.demo.model.Student;
-import com.example.demo.repository.StudentRepository;
+import com.example.demo.service.StudentService;
 
 @RestController
 @RequestMapping("student")
 public class StudentController {
 	
-	@Qualifier("studentRepository")
+	@Qualifier("studentService")
 	@Autowired(required = true)
-	private final StudentRepository repository;
+	private final StudentService service;
 	
 	
-	public StudentController(@Qualifier("studentRepository")StudentRepository repository) {
-		this.repository = repository;
+	public StudentController(@Qualifier("studentService")StudentService service) {
+		this.service = service;
 	}
 	
 	@GetMapping("/")
-	public Iterable<Student> getStudents(){
-		return repository.findAll();
+	public ResponseEntity<?> getStudents() {
+		try {
+			return ResponseEntity.ok(service.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+		}
 	}
 
 	@PostMapping("/")
-	public void saveStudent(@RequestBody Student student) {
-		this.repository.save(student);
+	public ResponseEntity<?> saveStudent(@RequestBody Student student) {
+		try {
+			return ResponseEntity.ok(service.save(student));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: Failed to save");
+		}
 	}
 	
 	@GetMapping("/librety/{number}")
-	public Iterable<DTOStudent> getStudentByNumberOfLibrety(@PathVariable int number) {
-		return repository.getStudentByNumberOfLibrety(number);
+	public ResponseEntity<?> getStudentByNumberOfLibrety(@PathVariable int number) {
+		try {
+			return ResponseEntity.ok(service.getStudentByNumberOfLibrety(number));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+		}
 	}
 
 	
 	@GetMapping("/byLastname")
-	public List<DTOStudent> getStudentsBySimpleOrdering(){
-		return repository.getStudentsBySimpleOrdering();
+	public ResponseEntity<?> getStudentsBySimpleOrdering() {
+		try {
+			return ResponseEntity.ok(service.getStudentsBySimpleOrdering());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+		}
 	}
 	
 	@GetMapping("/genre/{genre}")
-	public List<DTOStudent> getStudentsByGenre(@PathVariable String genre){
-		return repository.getStudentsByGenre(genre);
+	public ResponseEntity<?> getStudentsByGenre(@PathVariable String genre) {
+		try {
+			return ResponseEntity.ok(service.getStudentsByGenre(genre));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+		}
 	}
 }
 

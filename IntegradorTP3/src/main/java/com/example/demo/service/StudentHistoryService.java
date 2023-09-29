@@ -25,7 +25,7 @@ public class StudentHistoryService {
 			StudentHistory studentHistory = new StudentHistory(student, career, currentDate, null);
 			return repository.save(studentHistory);
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception(e.getMessage());
 		}
 	}
 }
