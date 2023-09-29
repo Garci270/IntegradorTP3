@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Career;
-import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.CareerService;
 import com.example.demo.service.StudentService;
 
@@ -24,7 +23,7 @@ public class CareerController {
 	
 	@Autowired
 	private StudentService studentService;
-	
+    
 	@PostMapping("/")
 	public ResponseEntity<?> saveCareer(@RequestBody Career career) {
 		try {

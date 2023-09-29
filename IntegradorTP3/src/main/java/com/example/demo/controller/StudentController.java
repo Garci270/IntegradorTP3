@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 
+
+
 @RestController
 @RequestMapping("student")
 public class StudentController {
@@ -20,8 +22,8 @@ public class StudentController {
 	@Qualifier("studentService")
 	@Autowired(required = true)
 	private final StudentService service;
-	
-	
+
+    
 	public StudentController(@Qualifier("studentService")StudentService service) {
 		this.service = service;
 	}
