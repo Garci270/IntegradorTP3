@@ -1,15 +1,15 @@
 package com.example.demo.DTO;
 
-public class DTOCarrerByStudents {
+public class DTOCareerByStudents {
 	private String name;
 	private long amountStudents;
 	
 	
-	public DTOCarrerByStudents() {
+	public DTOCareerByStudents() {
 		super();		
 	}
 	
-	public DTOCarrerByStudents(String name, long amountStudents) {
+	public DTOCareerByStudents(String name, long amountStudents) {
 		super();
 		this.name = name;
 		this.amountStudents = amountStudents;

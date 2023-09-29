@@ -1,9 +1,15 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Carrer;
-import com.example.demo.model.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface StudentHistoryRepository {
-	public void insertStudentToCareer(Carrer carrer, Student student);
-	public void graduateStudent(Student student, Carrer carrer);
+import com.example.demo.model.Career;
+import com.example.demo.model.Student;
+import com.example.demo.model.StudentHistory;
+
+@Repository("studentHistoryRepository")
+public interface StudentHistoryRepository extends JpaRepository<StudentHistory, Integer> { //StudenHistoryPK en vez de Integer???
+//	@Query
+//	public void graduateStudent(Student student, Career carrer);
 }

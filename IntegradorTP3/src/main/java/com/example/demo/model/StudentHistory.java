@@ -18,9 +18,9 @@ public class StudentHistory implements Serializable {
 	@JoinColumn(name="idStudent")
 	private Student student;
 	@Id
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//@JoinColumn(name="idCareer")
-	private Carrer carrer;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idCareer")
+	private Career career;
 	@Column(nullable = false)
 	private Date inscriptionDate;
 	@Column(nullable = true)
@@ -30,10 +30,10 @@ public class StudentHistory implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StudentHistory(Student student, Carrer career, Date inscriptionDate, Date egressDate, boolean graduate) {
+	public StudentHistory(Student student, Career career, Date inscriptionDate, Date egressDate) {
 		super();
 		this.student = student;
-		this.carrer = career;
+		this.career = career;
 		this.inscriptionDate = inscriptionDate;
 		this.egressDate = egressDate;
 	}
@@ -62,12 +62,12 @@ public class StudentHistory implements Serializable {
 		this.student = student;
 	}
 
-	public Carrer getCareer() {
-		return carrer;
+	public Career getCareer() {
+		return career;
 	}
 
-	public void setCareer(Carrer career) {
-		this.carrer = career;
+	public void setCareer(Career career) {
+		this.career = career;
 	}
 
 	public Date getInscription() {

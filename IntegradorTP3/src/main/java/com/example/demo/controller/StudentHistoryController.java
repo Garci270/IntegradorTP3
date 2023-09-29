@@ -1,26 +1,30 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Carrer;
+import com.example.demo.model.Career;
 import com.example.demo.model.Student;
-import com.example.demo.repository.StudentHistoryRepositoryImpl;
+import com.example.demo.service.StudentHistoryService;
 
 @RestController
 @RequestMapping("/studentHistory")
 public class StudentHistoryController {
 	
 	 @Autowired(required = true)
-	 private StudentHistoryRepositoryImpl studentHistory;
+	 private StudentHistoryService service;
 	 
 	 @PostMapping("/")
-	 public void insertStudentToCareer(@RequestBody Carrer carrer, Student student) {
-		 studentHistory.insertStudentToCareer(carrer, student);
+	 public ResponseEntity<?> insertStudentToCareer(@RequestBody Career carrer, Student student) {
+		 try {
+			return ResponseEntity.ok(service.save(carrer, student));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: Failed to save");
+		}
 	 }
 	 
 }

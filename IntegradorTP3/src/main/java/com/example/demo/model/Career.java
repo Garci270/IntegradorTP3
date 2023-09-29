@@ -9,19 +9,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Carrer {
+public class Career {
 	@Id
 	private int idCareer;
 	@Column(nullable=false)
 	private String name;
-//	@OneToMany(mappedBy = "career")
+	@OneToMany(mappedBy = "career")
 	private List<StudentHistory> students;
 	
-	public Carrer() {
+	public Career() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Carrer(int idCareer,String name) {
+	public Career(int idCareer,String name) {
 		super();
 		this.idCareer = idCareer;
 		this.name = name;
@@ -47,7 +47,7 @@ public class Carrer {
 	@Override
 	public boolean equals(Object obj) {
 		try {
-			Carrer otro = (Carrer) obj;
+			Career otro = (Career) obj;
 			return this.getIdCareer() == otro.getIdCareer();
 		} catch (Exception e) {
 			return false;

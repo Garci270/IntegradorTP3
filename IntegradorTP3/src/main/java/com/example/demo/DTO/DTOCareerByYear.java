@@ -1,13 +1,13 @@
 package com.example.demo.DTO;
 
-public class DTOCarrerByYear {
+public class DTOCareerByYear {
 	private int idCareer;
 	private String name;
 	private long amountEnrolled;
 	private long amountGraduated;
 	private int year;
 
-	public DTOCarrerByYear(int idCareer, String name, long amountEnrolled, long amountGraduated, int year) {
+	public DTOCareerByYear(int idCareer, String name, long amountEnrolled, long amountGraduated, int year) {
 		super();
 		this.idCareer = idCareer;
 		this.name = name;
@@ -58,7 +58,7 @@ public class DTOCarrerByYear {
 				+ amountGraduated + "]";
 	}
 
-	public DTOCarrerByYear() {
+	public DTOCareerByYear() {
 		super();
 	}
 
