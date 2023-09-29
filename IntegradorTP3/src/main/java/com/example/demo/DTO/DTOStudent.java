@@ -1,5 +1,7 @@
 package com.example.demo.DTO;
 
+import com.example.demo.model.Student;
+
 public class DTOStudent {
 	private String fullname;
 	private int age;
@@ -8,6 +10,13 @@ public class DTOStudent {
 	
 	public DTOStudent() {
 		
+	}
+	
+	public DTOStudent(Student student) {
+		this.fullname = student.getNames() + " " + student.getLastname();
+		this.age = student.getAge();
+		this.numberOfLibrety = student.getNumberOfLibrety();
+		this.city = student.getResidenceCity();
 	}
 	
 	public DTOStudent(String fullname, int age, long numberOfLibrety, String city) {

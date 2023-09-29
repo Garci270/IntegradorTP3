@@ -46,6 +46,10 @@ public class Student {
 		this.careers = new ArrayList<>();
 	}
 
+	public long getNumberOfLibrety() {
+		return numberOfLibrety;
+	}
+
 	public String getNames() {
 		return names;
 	}

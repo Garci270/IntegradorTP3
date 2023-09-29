@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DTO.DTOStudent;
-import com.example.demo.model.Career;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 
@@ -40,10 +39,7 @@ public class StudentService {
 	@Transactional
 	public List<DTOStudent> getStudentByNumberOfLibrety(long number) throws Exception {
 		try {
-			var rows = repository.getStudentByNumberOfLibrety(number);
-			return rows.stream()
-					.map(row -> new DTOStudent(row.getFullname(), row.getAge(), row.getNumberOfLibrety(), row.getCity()))
-						.collect(Collectors.toList());
+			return repository.getStudentByNumberOfLibrety(number).stream().map( DTOStudent::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -52,10 +48,7 @@ public class StudentService {
 	@Transactional
 	public List<DTOStudent> getStudentsBySimpleOrdering() throws Exception {
 		try {
-			var rows = repository.getStudentsBySimpleOrdering();
-			return rows.stream()
-					.map(row -> new DTOStudent(row.getFullname(), row.getAge(), row.getNumberOfLibrety(), row.getCity()))
-						.collect(Collectors.toList());
+			return repository.getStudentsBySimpleOrdering().stream().map( DTOStudent::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -64,22 +57,16 @@ public class StudentService {
 	@Transactional
 	public List<DTOStudent> getStudentsByGenre(String genre) throws Exception {
 		try {
-			var rows = repository.getStudentsByGenre(genre);
-			return rows.stream()
-					.map(row -> new DTOStudent(row.getFullname(), row.getAge(), row.getNumberOfLibrety(), row.getCity()))
-						.collect(Collectors.toList());
+			return repository.getStudentsByGenre(genre).stream().map( DTOStudent::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 	
 	@Transactional
-	public List<DTOStudent> getStudentsByCarrerCity(Career car, String city) throws Exception {
+	public List<DTOStudent> getStudentsByCareerCity(int car, String city) throws Exception {
 		try {
-			var rows = repository.getStudentsByCarrerCity(car, city);
-			return rows.stream()
-					.map(row -> new DTOStudent(row.getFullname(), row.getAge(), row.getNumberOfLibrety(), row.getCity()))
-						.collect(Collectors.toList());
+			return repository.getStudentsByCareerCity(car, city).stream().map( DTOStudent::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

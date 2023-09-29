@@ -53,9 +53,9 @@ public class CareerController {
 	}
 	
 	@GetMapping("/studentsByCity/{car}/{city}")
-	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable Career car, @PathVariable String city) {
+	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable int car, @PathVariable String city) {
 		try {
-			return ResponseEntity.ok(studentService.getStudentsByCarrerCity(car, city));
+			return ResponseEntity.ok(studentService.getStudentsByCareerCity(car, city));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
 		}
