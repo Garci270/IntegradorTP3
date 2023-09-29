@@ -4,21 +4,27 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 
 @SuppressWarnings("serial")
 @Entity
 public class StudentHistory implements Serializable {
-	@Id
+	@EmbeddedId
+	private StudentHistoryPK id;
+	//@Id
 	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("idStudent")
 	@JoinColumn(name="idStudent")
 	private Student student;
-	@Id
+	//@Id
 	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("idCareer")
 	@JoinColumn(name="idCareer")
 	private Career career;
 	@Column(nullable = false)

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Career;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.CareerService;
+import com.example.demo.service.StudentService;
 
 @RestController
 @RequestMapping("/career")
@@ -20,7 +21,9 @@ public class CareerController {
 	
 	@Autowired
 	private CareerService service;
-	private StudentRepository student;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	@PostMapping("/")
 	public ResponseEntity<?> saveCareer(@RequestBody Career career) {
@@ -50,9 +53,9 @@ public class CareerController {
 	}
 	
 	@GetMapping("/studentsByCity/{car}/{city}")
-	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable Career car, String city) {
+	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable Career car, @PathVariable String city) {
 		try {
-			return ResponseEntity.ok(student.getStudentsByCarrerCity(car, city));
+			return ResponseEntity.ok(studentService.getStudentsByCarrerCity(car, city));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
 		}
