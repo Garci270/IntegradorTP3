@@ -2,13 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.repository.CareerRepository;
 
-import jakarta.transaction.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.DTO.DTOCareerByStudents;
 import com.example.demo.DTO.DTOCareerByYear;
@@ -28,7 +27,7 @@ public class CareerService {
 		}
 	}
 	
-	@Transactional
+	@Transactional( readOnly = true )
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents() throws Exception {
 		try {
 			var rows = repository.getCareersByNumberOfStudents();
@@ -40,7 +39,7 @@ public class CareerService {
 		}
 	}
 	
-	@Transactional
+	@Transactional( readOnly = true )
 	public List<DTOCareerByYear> getReportOfCareers() throws Exception {
 		try {
 			var rows = repository.getReportOfCareers();
@@ -51,5 +50,6 @@ public class CareerService {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
 	
 }

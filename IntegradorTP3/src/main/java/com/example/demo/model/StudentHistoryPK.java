@@ -5,10 +5,11 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class StudentHistoryPK implements Serializable {
 	@Column(name="idCareer")
-	private int idCareer;
+	private long idCareer;
 	@Column(name="idStudent")
 	private int idStudent;
 	
@@ -16,12 +17,12 @@ public class StudentHistoryPK implements Serializable {
 		
 	}
 	
-	public StudentHistoryPK(int idCareer, int idStudent) {
+	public StudentHistoryPK(long idCareer, int idStudent) {
 		this.idCareer = idCareer;
 		this.idStudent = idStudent;
 	}
 
-	public int getIdCareer() {
+	public long getIdCareer() {
 		return idCareer;
 	}
 

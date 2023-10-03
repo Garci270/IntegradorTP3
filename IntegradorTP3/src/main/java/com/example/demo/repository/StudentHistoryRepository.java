@@ -13,4 +13,8 @@ import com.example.demo.model.StudentHistoryPK;
 public interface StudentHistoryRepository extends JpaRepository<StudentHistory, StudentHistoryPK> { //StudenHistoryPK en vez de Integer???
 //	@Query
 //	public void graduateStudent(Student student, Career carrer);
+	
+	
+	
+	
 }

@@ -1,7 +1,5 @@
 package com.example.demo.utils;
 
-import java.util.Date;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +29,7 @@ public class LoadDatabase {
         	Student s2 = new Student(2, "mariano", "mirinda", 53, "male", 4735235, 75285, "azul");
         	log.info("Preloading " +  studentRepository.save(s1));
         	log.info("Preloading " +  studentRepository.save(s2));
+        	
         };
     }
 }

@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.DTO.DTOEnroll;
 import com.example.demo.model.Student;
+import com.example.demo.service.StudentHistoryService;
 import com.example.demo.service.StudentService;
 
 
@@ -22,12 +25,25 @@ public class StudentController {
 	@Qualifier("studentService")
 	@Autowired(required = true)
 	private final StudentService service;
+	
+	@Autowired(required = true)
+	 private StudentHistoryService serviceHistory;
 
     
-	public StudentController(@Qualifier("studentService")StudentService service) {
+	public StudentController(@Qualifier("studentService")StudentService service, StudentHistoryService serviceHistory) {
 		this.service = service;
+		this.serviceHistory = serviceHistory;
 	}
 	
+	 @PostMapping("/enroll")
+	 public ResponseEntity<?> insertStudentToCareer(@RequestBody DTOEnroll DTOenroll ) {
+		 try {
+			return ResponseEntity.ok(serviceHistory.save( DTOenroll ));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: Failed to save");
+		}
+	 }
+	 
 	@GetMapping("/")
 	public ResponseEntity<?> getStudents() {
 		try {
@@ -46,7 +62,7 @@ public class StudentController {
 		}
 	}
 	
-	@GetMapping("/librety/{number}")
+	@GetMapping("/{number}")
 	public ResponseEntity<?> getStudentByNumberOfLibrety(@PathVariable int number) {
 		try {
 			return ResponseEntity.ok(service.getStudentByNumberOfLibrety(number));
@@ -65,7 +81,7 @@ public class StudentController {
 		}
 	}
 	
-	@GetMapping("/genre/{genre}")
+	@GetMapping("/{genre}")
 	public ResponseEntity<?> getStudentsByGenre(@PathVariable String genre) {
 		try {
 			return ResponseEntity.ok(service.getStudentsByGenre(genre));

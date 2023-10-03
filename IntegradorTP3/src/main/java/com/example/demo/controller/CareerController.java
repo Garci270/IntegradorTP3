@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTO.DTOSearchCity;
 import com.example.demo.model.Career;
 import com.example.demo.service.CareerService;
 import com.example.demo.service.StudentService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/career")
@@ -24,8 +27,9 @@ public class CareerController {
 	@Autowired
 	private StudentService studentService;
     
+	//ACA HAY QUE PASAR UN DTO COMO PARAMETRO PARA EL POST
 	@PostMapping("/")
-	public ResponseEntity<?> saveCareer(@RequestBody Career career) {
+	public ResponseEntity<?> saveCareer(@RequestBody @Valid Career career) {
 		try {
 			return ResponseEntity.ok(service.save(career));
 		} catch (Exception e) {
@@ -51,13 +55,15 @@ public class CareerController {
 		}
 	}
 	
-	@GetMapping("/studentsByCity/{car}/{city}")
-	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable int car, @PathVariable String city) {
+	@GetMapping("/{car}")
+	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable long car, DTOSearchCity request) {
 		try {
-			return ResponseEntity.ok(studentService.getStudentsByCareerCity(car, city));
+			return ResponseEntity.ok(studentService.getStudentsByCareerCity(car, request.getCity()));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
 		}
 	}
+	
+	
 
 }
