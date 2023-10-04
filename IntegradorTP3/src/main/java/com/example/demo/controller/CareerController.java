@@ -56,7 +56,7 @@ public class CareerController {
 	}
 	
 	@GetMapping("/{car}")
-	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable long car, DTOSearchCity request) {
+	public ResponseEntity<?> getStudentsByCareerCity(@PathVariable int car, DTOSearchCity request) {
 		try {
 			return ResponseEntity.ok(studentService.getStudentsByCareerCity(car, request.getCity()));
 		} catch (Exception e) {

@@ -3,8 +3,12 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -14,7 +18,8 @@ public class Career {
 	private int idCareer;
 	@Column(nullable=false)
 	private String name;
-	@OneToMany(mappedBy = "career")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "career")
+	@JsonIgnore
 	private List<StudentHistory> students;
 	
 	public Career() {

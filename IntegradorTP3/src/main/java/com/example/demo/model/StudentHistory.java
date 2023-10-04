@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -11,20 +10,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 
-@SuppressWarnings("serial")
+
 @Entity
-public class StudentHistory implements Serializable {
+public class StudentHistory {
 	@EmbeddedId
 	private StudentHistoryPK id;
-	//@Id
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idStudent")
-	@JoinColumn(name="idStudent")
+	@JoinColumn(name="id_student")
 	private Student student;
-	//@Id
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idCareer")
-	@JoinColumn(name="idCareer")
+	@JoinColumn(name="id_career")
 	private Career career;
 	@Column(nullable = false)
 	private Date inscriptionDate;
@@ -37,6 +36,7 @@ public class StudentHistory implements Serializable {
 
 	public StudentHistory(Student student, Career career, Date inscriptionDate, Date egressDate) {
 		super();
+		this.id = new StudentHistoryPK();
 		this.student = student;
 		this.career = career;
 		this.inscriptionDate = inscriptionDate;
