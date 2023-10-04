@@ -26,7 +26,6 @@ public class CareerController {
 	@Autowired
 	private StudentService studentService;
     
-	//ACA HAY QUE PASAR UN DTO COMO PARAMETRO PARA EL POST
 	@PostMapping("")
 	public ResponseEntity<?> saveCareer(@RequestBody @Valid Career career) {
 		try {
