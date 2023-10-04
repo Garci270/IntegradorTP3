@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.repository.CareerRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,10 +29,7 @@ public class CareerService {
 	@Transactional( readOnly = true )
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents() throws Exception {
 		try {
-			var rows = repository.getCareersByNumberOfStudents();
-			return rows.stream()
-				.map(row -> new DTOCareerByStudents(row.getName(), row.getAmountStudents()))
-					.collect(Collectors.toList());
+			return repository.getCareersByNumberOfStudents();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -42,10 +38,7 @@ public class CareerService {
 	@Transactional( readOnly = true )
 	public List<DTOCareerByYear> getReportOfCareers() throws Exception {
 		try {
-			var rows = repository.getReportOfCareers();
-			return rows.stream()
-					.map(row -> new DTOCareerByYear(row.getIdCareer(), row.getName(), row.getAmountEnrolled(), row.getAmountGraduated(), row.getYear()))
-						.collect(Collectors.toList());
+			return repository.getReportOfCareers();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

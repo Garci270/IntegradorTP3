@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +41,7 @@ public class CareerController {
 		try {
 			return ResponseEntity.ok(service.getCareersByNumberOfStudents());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 	
@@ -51,7 +50,7 @@ public class CareerController {
 		try {
 			return ResponseEntity.ok(service.getReportOfCareers());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 	
@@ -60,7 +59,7 @@ public class CareerController {
 		try {
 			return ResponseEntity.ok(studentService.getStudentsByCareerCity(car, request.getCity()));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 	

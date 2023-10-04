@@ -50,7 +50,7 @@ public class StudentController {
 		try {
 			return ResponseEntity.ok(service.findAll());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 
@@ -78,7 +78,7 @@ public class StudentController {
 		try {
 			return ResponseEntity.ok(service.getStudentsBySimpleOrdering());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class StudentController {
 		try {
 			return ResponseEntity.ok(service.getStudentsByGenre(genre));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Not found");
+			return ResponseEntity.internalServerError().body("Error: Internal server error");
 		}
 	}
 }
