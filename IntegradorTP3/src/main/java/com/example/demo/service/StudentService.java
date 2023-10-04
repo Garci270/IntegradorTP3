@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,10 @@ public class StudentService {
 		}
 	}
 	
-	
-	@SuppressWarnings("unchecked")
 	@Transactional ( readOnly = true )
-	public List<DTOStudent> getStudentByNumberOfLibrety(long number) throws Exception {
+	public DTOStudent getStudentByNumberOfLibrety(long number) throws Exception {
 		try {
-			return ((Collection<Student>) repository.getStudentByNumberOfLibrety(number)).stream().map( DTOStudent::new ).toList();
+			return repository.getStudentByNumberOfLibrety(number).map( DTOStudent::new ).get();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

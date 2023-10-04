@@ -28,7 +28,7 @@ public class StudentHistoryService {
 	@Transactional
 	public StudentHistory save(DTOEnroll dtoEnroll) throws Exception {
 		try {
-			final var student = this.repositoryStudent.getStudentByNumberOfLibrety(dtoEnroll.getNumberOfLibrety());
+			final var student = this.repositoryStudent.getStudentByNumberOfLibrety(dtoEnroll.getNumberOfLibrety()).get();
 			final var career = this.repositoryCareer.getCareerById(dtoEnroll.getIdCareer());
 			Date currentDate = new Date(System.currentTimeMillis());
 			final var studentHistory = new StudentHistory(student, career, currentDate, null);

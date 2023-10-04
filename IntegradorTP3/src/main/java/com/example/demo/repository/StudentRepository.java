@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,7 @@ import com.example.demo.model.Student;
 public interface StudentRepository extends JpaRepository<Student, Integer>{
 	
 	@Query("SELECT s FROM Student s WHERE s.numberOfLibrety = :number")
-	public Student getStudentByNumberOfLibrety(long number);
+	public Optional<Student> getStudentByNumberOfLibrety(long number);
 
 	@Query("SELECT s FROM Student s ORDER BY s.lastname")
 	public List<Student> getStudentsBySimpleOrdering();

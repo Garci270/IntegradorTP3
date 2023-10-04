@@ -28,7 +28,7 @@ public class CareerController {
 	private StudentService studentService;
     
 	//ACA HAY QUE PASAR UN DTO COMO PARAMETRO PARA EL POST
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> saveCareer(@RequestBody @Valid Career career) {
 		try {
 			return ResponseEntity.ok(service.save(career));

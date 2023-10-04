@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTO.DTOEnroll;
@@ -44,7 +45,7 @@ public class StudentController {
 		}
 	 }
 	 
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> getStudents() {
 		try {
 			return ResponseEntity.ok(service.findAll());
@@ -53,7 +54,7 @@ public class StudentController {
 		}
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> saveStudent(@RequestBody Student student) {
 		try {
 			return ResponseEntity.ok(service.save(student));
@@ -63,7 +64,7 @@ public class StudentController {
 	}
 	
 	@GetMapping("/{number}")
-	public ResponseEntity<?> getStudentByNumberOfLibrety(@PathVariable int number) {
+	public ResponseEntity<?> getStudentByNumberOfLibrety(@PathVariable long number) {
 		try {
 			return ResponseEntity.ok(service.getStudentByNumberOfLibrety(number));
 		} catch (Exception e) {
@@ -81,8 +82,8 @@ public class StudentController {
 		}
 	}
 	
-	@GetMapping("/{genre}")
-	public ResponseEntity<?> getStudentsByGenre(@PathVariable String genre) {
+	@GetMapping(value = "", params = "genre")
+	public ResponseEntity<?> getStudentsByGenre(@RequestParam String genre) {
 		try {
 			return ResponseEntity.ok(service.getStudentsByGenre(genre));
 		} catch (Exception e) {
