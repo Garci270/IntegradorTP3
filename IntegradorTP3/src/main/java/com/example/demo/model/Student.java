@@ -3,7 +3,7 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonIgnoreProperties(value = {"idStudent", "lastname", "dni", "genre", "careers"})
 public class Student {
 	@Id
 	private int idStudent;
@@ -31,7 +32,6 @@ public class Student {
 	@Column(nullable=false)
 	private String residenceCity;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "student")
-	@JsonIgnore
 	private List<StudentHistory> careers;
 	
 	public Student() {

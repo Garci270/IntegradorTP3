@@ -21,19 +21,20 @@ public class StudentService {
 	private StudentRepository repository;
 	
 	@Transactional ( readOnly = true )
-	public List<Student> findAll() throws Exception {
+	public List<DTOStudentResponse> findAll() throws Exception {
 		try {
-			return repository.findAll();
+			return repository.findAll().stream().map( DTOStudentResponse::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 	
 	@Transactional
-	public Student save(@Valid DTOStudentRequest dto) throws Exception {
+	public DTOStudentResponse save(@Valid DTOStudentRequest dto) throws Exception {
 		try {
 			Student student = new Student(dto.getIdStudent(), dto.getNames(), dto.getLastname(), dto.getAge(), dto.getGenre(), dto.getDni(), dto.getNumberOfLibrety(), dto.getResidenceCity());
-			return repository.save(student);
+			student = repository.save(student);
+			return new DTOStudentResponse(student);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

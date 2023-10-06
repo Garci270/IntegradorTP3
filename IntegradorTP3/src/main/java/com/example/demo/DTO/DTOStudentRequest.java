@@ -1,14 +1,28 @@
 package com.example.demo.DTO;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class DTOStudentRequest {
-	
+	@NotNull( message = "idStudent shouldn't be null")
 	private int idStudent;
+	@NotNull( message = "names shouldn't be null")
+	@NotEmpty( message = "names shouldn't be empty")
 	private String names;
+	@NotNull( message = "lastname shouldn't be null")
+	@NotEmpty( message = "lastname shouldn't be empty")
 	private String lastname;
+	@NotNull( message = "age shouldn't be null")
 	private int age;
+	@NotNull( message = "genre shouldn't be null")
+	@NotEmpty( message = "genre shouldn't be empty")
 	private String genre;
+	@NotNull( message = "dni shouldn't be null")
 	private long dni;
+	@NotNull( message = "numberOfLibrety shouldn't be null")
 	private long numberOfLibrety;
+	@NotNull( message = "residenceCity shouldn't be null")
+	@NotEmpty( message = "residenceCity shouldn't be empty")
 	private String residenceCity;
 
 	public DTOStudentRequest(int idStudent,String names, String lastname, int age, String genre, long dni,long numberOfLibrety, String residenceCity) {
