@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTO.DTOEnroll;
-import com.example.demo.model.Student;
+import com.example.demo.DTO.DTOStudentRequest;
 import com.example.demo.service.StudentHistoryService;
 import com.example.demo.service.StudentService;
+
+import jakarta.validation.Valid;
 
 
 
@@ -55,9 +57,9 @@ public class StudentController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> saveStudent(@RequestBody Student student) {
+	public ResponseEntity<?> saveStudent(@RequestBody @Valid DTOStudentRequest dto) {
 		try {
-			return ResponseEntity.ok(service.save(student));
+			return ResponseEntity.ok(service.save(dto));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("Error: Failed to save");
 		}

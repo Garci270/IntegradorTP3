@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import com.example.demo.DTO.DTOStudent;
+import com.example.demo.DTO.DTOStudentRequest;
+import com.example.demo.DTO.DTOStudentResponse;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
+
+import jakarta.validation.Valid;
 
 
 @Service("studentService")
@@ -28,8 +30,9 @@ public class StudentService {
 	}
 	
 	@Transactional
-	public Student save(Student student) throws Exception {
+	public Student save(@Valid DTOStudentRequest dto) throws Exception {
 		try {
+			Student student = new Student(dto.getIdStudent(), dto.getNames(), dto.getLastname(), dto.getAge(), dto.getGenre(), dto.getDni(), dto.getNumberOfLibrety(), dto.getResidenceCity());
 			return repository.save(student);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
@@ -37,36 +40,36 @@ public class StudentService {
 	}
 	
 	@Transactional ( readOnly = true )
-	public DTOStudent getStudentByNumberOfLibrety(long number) throws Exception {
+	public DTOStudentResponse getStudentByNumberOfLibrety(long number) throws Exception {
 		try {
-			return repository.getStudentByNumberOfLibrety(number).map( DTOStudent::new ).get();
+			return repository.getStudentByNumberOfLibrety(number).map( DTOStudentResponse::new ).get();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 	
 	@Transactional ( readOnly = true )
-	public List<DTOStudent> getStudentsBySimpleOrdering() throws Exception {
+	public List<DTOStudentResponse> getStudentsBySimpleOrdering() throws Exception {
 		try {
-			return repository.getStudentsBySimpleOrdering().stream().map( DTOStudent::new ).toList();
+			return repository.getStudentsBySimpleOrdering().stream().map( DTOStudentResponse::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 	
 	@Transactional ( readOnly = true )
-	public List<DTOStudent> getStudentsByGenre(String genre) throws Exception {
+	public List<DTOStudentResponse> getStudentsByGenre(String genre) throws Exception {
 		try {
-			return repository.getStudentsByGenre(genre).stream().map( DTOStudent::new ).toList();
+			return repository.getStudentsByGenre(genre).stream().map( DTOStudentResponse::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 	
 	@Transactional ( readOnly = true )
-	public List<DTOStudent> getStudentsByCareerCity(long car, String city) throws Exception {
+	public List<DTOStudentResponse> getStudentsByCareerCity(long car, String city) throws Exception {
 		try {
-			return repository.getStudentsByCareerCity(car, city).stream().map( DTOStudent::new ).toList();
+			return repository.getStudentsByCareerCity(car, city).stream().map( DTOStudentResponse::new ).toList();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

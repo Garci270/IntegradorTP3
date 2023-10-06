@@ -2,24 +2,24 @@ package com.example.demo.DTO;
 
 import com.example.demo.model.Student;
 
-public class DTOStudent {
+public class DTOStudentResponse {
 	private String fullname;
 	private int age;
 	private long numberOfLibrety;
 	private String city;
 	
-	public DTOStudent() {
+	public DTOStudentResponse() {
 		
 	}
 	
-	public DTOStudent(Student student) {
+	public DTOStudentResponse(Student student) {
 		this.fullname = student.getNames() + " " + student.getLastname();
 		this.age = student.getAge();
 		this.numberOfLibrety = student.getNumberOfLibrety();
 		this.city = student.getResidenceCity();
 	}
 	
-	public DTOStudent(String fullname, int age, long numberOfLibrety, String city) {
+	public DTOStudentResponse(String fullname, int age, long numberOfLibrety, String city) {
 		this.fullname = fullname;
 		this.age = age;
 		this.numberOfLibrety = numberOfLibrety;

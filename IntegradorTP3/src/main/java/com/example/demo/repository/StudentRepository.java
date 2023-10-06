@@ -24,4 +24,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer>{
 	@Query("SELECT s FROM Student s JOIN s.careers c WHERE c.career.idCareer = :car AND s.residenceCity= :city")
 	public List<Student> getStudentsByCareerCity(long car, String city);
 
+
 }
