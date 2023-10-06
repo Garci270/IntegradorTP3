@@ -75,14 +75,6 @@ public class StudentHistory {
 	public void setCareer(Career career) {
 		this.career = career;
 	}
-
-	public Date getInscription() {
-		return inscriptionDate;
-	}
-
-	public void setInscription(Date inscriptionDate) {
-		this.inscriptionDate = inscriptionDate;
-	}
 	
 	@Override
 	public boolean equals(Object obj) {

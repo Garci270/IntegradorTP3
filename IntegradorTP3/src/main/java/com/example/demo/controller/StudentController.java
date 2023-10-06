@@ -57,9 +57,9 @@ public class StudentController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> saveStudent(@RequestBody @Valid DTOStudentRequest dto) {
+	public ResponseEntity<?> saveStudent(@RequestBody @Valid DTOStudentRequest request) {
 		try {
-			return ResponseEntity.ok(service.save(dto));
+			return ResponseEntity.ok(service.save(request));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("Error: Failed to save");
 		}

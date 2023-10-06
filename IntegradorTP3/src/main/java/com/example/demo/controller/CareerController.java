@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.DTO.DTOCareer;
+import com.example.demo.DTO.DTOCareerRequest;
 import com.example.demo.DTO.DTOSearchCity;
-import com.example.demo.model.Career;
 import com.example.demo.service.CareerService;
 import com.example.demo.service.StudentService;
 
@@ -28,9 +27,9 @@ public class CareerController {
 	private StudentService studentService;
     
 	@PostMapping("")
-	public ResponseEntity<?> saveCareer(@RequestBody @Valid DTOCareer career) {
+	public ResponseEntity<?> saveCareer(@RequestBody @Valid DTOCareerRequest request) {
 		try {
-			return ResponseEntity.ok(service.save(career));
+			return ResponseEntity.ok(service.save(request));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("Error: Failed to save");
 		}

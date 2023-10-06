@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Career;
 
-import jakarta.validation.Valid;
-
-import com.example.demo.DTO.DTOCareer;
 import com.example.demo.DTO.DTOCareerByStudents;
 import com.example.demo.DTO.DTOCareerByYear;
 
@@ -35,10 +32,5 @@ public interface CareerRepository extends JpaRepository<Career, Integer>{
 	
 	@Query("SELECT c FROM Career c WHERE c.idCareer = :id")
 	public Career getCareerById(long id);
-
-
-	public Career save(@Valid DTOCareer career);
-	
-	
 	
 }

@@ -30,9 +30,9 @@ public class StudentService {
 	}
 	
 	@Transactional
-	public DTOStudentResponse save(@Valid DTOStudentRequest dto) throws Exception {
+	public DTOStudentResponse save(@Valid DTOStudentRequest request) throws Exception {
 		try {
-			Student student = new Student(dto.getIdStudent(), dto.getNames(), dto.getLastname(), dto.getAge(), dto.getGenre(), dto.getDni(), dto.getNumberOfLibrety(), dto.getResidenceCity());
+			Student student = new Student(request.getIdStudent(), request.getNames(), request.getLastname(), request.getAge(), request.getGenre(), request.getDni(), request.getNumberOfLibrety(), request.getResidenceCity());
 			student = repository.save(student);
 			return new DTOStudentResponse(student);
 		} catch (Exception e) {
