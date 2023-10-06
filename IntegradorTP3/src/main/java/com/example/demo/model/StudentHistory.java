@@ -25,6 +25,7 @@ public class StudentHistory {
 	@MapsId("idCareer")
 	@JoinColumn(name="id_career")
 	private Career career;
+	
 	@Column(nullable = false)
 	private Date inscriptionDate;
 	@Column(nullable = true)
