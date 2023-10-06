@@ -1,6 +1,7 @@
 package com.example.demo.DTO;
 
 public class DTOCareerByStudents {
+	private int idCareer;
 	private String name;
 	private long amountStudents;
 	
@@ -9,12 +10,21 @@ public class DTOCareerByStudents {
 		super();		
 	}
 	
-	public DTOCareerByStudents(String name, long amountStudents) {
+	public DTOCareerByStudents(int idCareer, String name, long amountStudents) {
 		super();
+		this.idCareer = idCareer;
 		this.name = name;
 		this.amountStudents = amountStudents;
 	}
 
+
+	public int getIdCareer() {
+		return idCareer;
+	}
+
+	public void setIdCareer(int idCareer) {
+		this.idCareer = idCareer;
+	}
 
 	public String getName() {
 		return name;

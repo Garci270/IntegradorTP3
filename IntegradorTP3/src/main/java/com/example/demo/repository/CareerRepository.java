@@ -14,10 +14,10 @@ import com.example.demo.DTO.DTOCareerByYear;
 @Repository("careerRepository")
 public interface CareerRepository extends JpaRepository<Career, Integer>{
 
-	@Query("SELECT new com.example.demo.DTO.DTOCareerByStudents(c.name, COUNT(s))"
+	@Query("SELECT new com.example.demo.DTO.DTOCareerByStudents(c.idCareer, c.name, COUNT(s))"
 			+ " FROM Career c"
 			+ " JOIN c.students s"
-			+ " GROUP BY c.name"
+			+ " GROUP BY c.idCareer, c.name"
 			+ " HAVING COUNT(s) > 0"
 			+ " ORDER BY COUNT(s) DESC")
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents();

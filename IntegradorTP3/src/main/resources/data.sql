@@ -70,7 +70,7 @@ insert into career (id_career, name) values (17, 'Pacific University');
 insert into career (id_career, name) values (18, 'Kwantleen University College');
 insert into career (id_career, name) values (19, 'Grantham University');
 insert into career (id_career, name) values (20, 'Hawassa University');
-
+COMMIT;
 
 insert into student (age, id_student , dni, number_of_librety, genre, lastname, names, residence_city) values (47, 1, 32408962, 57617, 'Female', 'Dyos', 'Bertie', 'Kurów');
 insert into student (age, id_student , dni, number_of_librety, genre, lastname, names, residence_city) values (28, 2, 32247025, 64941, 'Male', 'Calafate', 'Cheston', 'Guadalupe');
@@ -122,6 +122,7 @@ insert into student (age, id_student , dni, number_of_librety, genre, lastname, 
 insert into student (age, id_student , dni, number_of_librety, genre, lastname, names, residence_city) values (45, 48, 35863249, 2474, 'Male', 'Titta', 'Cassius', 'Huachos');
 insert into student (age, id_student , dni, number_of_librety, genre, lastname, names, residence_city) values (38, 49, 42100760, 42486, 'Male', 'Lightwing', 'Ferguson', 'Mithi');
 insert into student (age, id_student , dni, number_of_librety, genre, lastname, names, residence_city) values (23, 50, 40456799, 78350, 'Female', 'Schober', 'Juieta', 'Lysekil');
+COMMIT;
 
 insert into student_history (egress_date, id_career, id_student, inscription_date) values ('2001-11-22 21:21:30', 15, 26, '1998-01-07 11:13:01');
 insert into student_history (egress_date, id_career, id_student, inscription_date) values ('2004-01-27 16:50:24', 1, 23, '2009-09-17 20:54:45');
